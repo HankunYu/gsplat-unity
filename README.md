@@ -1,6 +1,8 @@
 # Gsplat
 
-A Unity package for rendering [3D Gaussian Splatting](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) (3DGS). Supports Unity 2022 and later. 
+[![Changelog](https://img.shields.io/badge/changelog-f15d30.svg)](./CHANGELOG.md) [![Version](https://img.shields.io/badge/version-v1.1.0-blue.svg)](https://github.com/wuyize25/gsplat-unity/releases/tag/v1.1.0) [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE.md)
+
+A Unity package for rendering [3D Gaussian Splatting](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) (3DGS). Supports Unity 2021 and later. 
 
 ![lego](Documentation~/Images/lego.png)
 
@@ -12,7 +14,7 @@ Most 3DGS assets are trained in Gamma space, following the official implementati
 
 ## Highlights
 
-- Supports Built-in Render Pipeline (BiRP), URP (Requires Unity 6+) and HDRP
+- Supports Built-in Render Pipeline (BiRP), URP and HDRP
 
 - Gaussians can be correctly blended with transparent meshes based on their bounding boxes
 
@@ -50,7 +52,7 @@ The next steps depend on the Render Pipeline you are using:
 - BiRP: Does not need any extra setup.
 - URP: Add `Gsplat URP Feature` to the URP renderer settings.
   - Find the `Universal Renderer Data` your project is using, click the `Add Renderer Feature` button, and choose `Gsplat URP Feature.`
-  - Requires Unity 6 or later, and Render Graph "Compatibility Mode" in URP settings must be turned off!
+  - If you are using Unity 6 or later, the Render Graph "Compatibility Mode" in URP settings must be turned off!
 - HDRP: Add `Custom Pass` volume object in your scene and a `Gsplat HDRP Pass` entry to it. The injection Point should be set to `Before Transparent`.
 
 ### Import Assets
@@ -67,7 +69,7 @@ The `Gamma To Linear` option is offered as a workaround to render Gamma Space Gs
 
 ## Additional Documentation
 
-- [Implementation Details](/Documentation~/Implementation%20Details.md)
+- [Implementation Details](./Documentation~/Implementation%20Details.md)
 
 ## Project Using Gsplat
 
