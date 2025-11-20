@@ -1,6 +1,6 @@
 # Gsplat
 
-[![Changelog](https://img.shields.io/badge/changelog-f15d30.svg)](./CHANGELOG.md) [![Version](https://img.shields.io/badge/version-v1.1.1-blue.svg)](https://github.com/wuyize25/gsplat-unity/releases/tag/v1.1.1) [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE.md)
+[![Changelog](https://img.shields.io/badge/changelog-f15d30.svg)](./CHANGELOG.md) [![Version](https://img.shields.io/badge/version-v1.1.2-blue.svg)](https://github.com/wuyize25/gsplat-unity/releases/tag/v1.1.2) [![License](https://img.shields.io/badge/license-MIT-green.svg)](./LICENSE.md)
 
 A Unity package for rendering [3D Gaussian Splatting](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/) (3DGS). Supports Unity 2021 and later. 
 
@@ -33,7 +33,7 @@ Most 3DGS assets are trained in Gamma space, following the official implementati
 
 ## Platform Compatibility
 
-The sorting pass, built upon [b0nes164/GPUSorting](https://github.com/b0nes164/GPUSorting), requires wave / subgroups operations which are only available in D3D12, Metal or Vulkan graphics APIs. WebGPU supports the subgroup operations but Unity has not implemented it. Anything using other graphics APIs will not work. I have only tested on Windows and Android, but the compatibility of this package should be similar to [aras-p/UnityGaussianSplatting](https://github.com/aras-p/UnityGaussianSplatting).
+The sorting pass, built upon [b0nes164/GPUSorting](https://github.com/b0nes164/GPUSorting), requires wave / subgroups operations which are only available in D3D12, Metal or Vulkan graphics APIs. WebGPU supports the subgroup operations but Unity has not implemented it. Anything using other graphics APIs will not work. I have only tested on Windows, Mac and Android, but the compatibility of this package should be similar to [aras-p/UnityGaussianSplatting](https://github.com/aras-p/UnityGaussianSplatting).
 
 ## Usage
 
