@@ -22,7 +22,6 @@ Shader "Gsplat/Standard"
             #pragma vertex vert
             #pragma fragment frag
             #pragma require compute
-            #pragma use_dxc
             #pragma multi_compile SH_BANDS_0 SH_BANDS_1 SH_BANDS_2 SH_BANDS_3
 
             #include "UnityCG.cginc"
