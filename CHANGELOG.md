@@ -5,11 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Added
+
+- Supports streaming data from RAM to VRAM ([#6](https://github.com/wuyize25/gsplat-unity/issues/6)). An option `Async Upload` is added to `GsplatRenderer` to enable this feature.
+
 ## [1.1.2] - 2025-11-20
 
 ### Fixed
 
-- Fixed the issue where rendering did not work properly on Mac with Unity 6. ([#9](https://github.com/wuyize25/gsplat-unity/issues/9)).
+- Fixed the issue where rendering did not work properly on Mac with Unity 6 ([#9](https://github.com/wuyize25/gsplat-unity/issues/9)).
 
 ## [1.1.1] - 2025-11-19
 
@@ -56,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - This is the first release of Gsplat, as a Package.
 
 
+[unreleased]: https://github.com/wuyize25/gsplat-unity/compare/v1.1.2...HEAD
 [1.1.2]: https://github.com/wuyize25/gsplat-unity/compare/v1.1.1...v1.1.2
 [1.1.1]: https://github.com/wuyize25/gsplat-unity/compare/v1.1.0...v1.1.1
 [1.1.0]: https://github.com/wuyize25/gsplat-unity/compare/v1.0.3...v1.1.0

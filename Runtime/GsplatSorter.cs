@@ -23,7 +23,7 @@ namespace Gsplat
         public GraphicsBuffer OrderBuffer { get; }
         public void Dispose();
     }
-    
+
     // some codes of this class originated from the GaussianSplatRenderSystem in aras-p/UnityGaussianSplatting by Aras Pranckevičius
     // https://github.com/aras-p/UnityGaussianSplatting/blob/main/package/Runtime/GaussianSplatRenderer.cs
     public class GsplatSorter
@@ -54,7 +54,7 @@ namespace Gsplat
                 InputKeys = null;
             }
         }
-        
+
         public static GsplatSorter Instance => s_instance ??= new GsplatSorter();
         static GsplatSorter s_instance;
         CommandBuffer m_commandBuffer;
@@ -142,7 +142,7 @@ namespace Gsplat
                 var res = (Resource)gs.SorterResource;
                 if (!res.Initialized)
                 {
-                    m_sortPass.InitPayload(cmd, res.OrderBuffer, gs.SplatCount);
+                    m_sortPass.InitPayload(cmd, res.OrderBuffer, (uint)res.OrderBuffer.count);
                     res.Initialized = true;
                 }
 
