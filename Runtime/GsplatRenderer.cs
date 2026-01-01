@@ -11,6 +11,8 @@ namespace Gsplat
     {
         public GsplatAsset GsplatAsset;
         [Range(0, 3)] public int SHDegree = 3;
+        [Range(0.01f, 20f)] public float ScaleMultiplier = 1.0f;
+        [Range(0.0f, 2.0f)] public float Opacity = 1.0f;
         public bool GammaToLinear;
         public bool AsyncUpload;
 
@@ -110,7 +112,7 @@ namespace Gsplat
 
             if (Valid)
                 m_renderer.Render(SplatCount, transform, GsplatAsset.Bounds,
-                    gameObject.layer, GammaToLinear, SHDegree);
+                    gameObject.layer, GammaToLinear, SHDegree, ScaleMultiplier, Opacity);
         }
     }
 }

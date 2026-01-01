@@ -30,6 +30,8 @@ Shader "Gsplat/Standard"
             int _SplatCount;
             int _SplatInstanceSize;
             int _SHDegree;
+            float _ScaleMultiplier;
+            float _Opacity;
             float4x4 _MATRIX_M;
             StructuredBuffer<uint> _OrderBuffer;
             StructuredBuffer<float3> _PositionBuffer;
@@ -87,7 +89,7 @@ Shader "Gsplat/Standard"
             SplatCovariance ReadCovariance(SplatSource source)
             {
                 float4 quat = _RotationBuffer[source.id];
-                float3 scale = _ScaleBuffer[source.id];
+                float3 scale = _ScaleBuffer[source.id] * _ScaleMultiplier;
                 return CalcCovariance(quat, scale);
             }
 
@@ -130,6 +132,7 @@ Shader "Gsplat/Standard"
                 }
 
                 float4 color = _ColorBuffer[source.id];
+                color.a *= _Opacity;
                 color.rgb = color.rgb * SH_C0 + 0.5;
                 #ifndef SH_BANDS_0
                 // calculate the model-space view direction

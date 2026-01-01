@@ -37,6 +37,8 @@ namespace Gsplat
         static readonly int k_splatCount = Shader.PropertyToID("_SplatCount");
         static readonly int k_gammaToLinear = Shader.PropertyToID("_GammaToLinear");
         static readonly int k_shDegree = Shader.PropertyToID("_SHDegree");
+        static readonly int k_scaleMultiplier = Shader.PropertyToID("_ScaleMultiplier");
+        static readonly int k_opacity = Shader.PropertyToID("_Opacity");
 
         public GsplatRendererImpl(uint splatCount, byte shBands)
         {
@@ -115,8 +117,10 @@ namespace Gsplat
         /// <param name="layer">Layer used for rendering.</param>
         /// <param name="gammaToLinear">Covert color space from Gamma to Linear.</param>
         /// <param name="shDegree">Order of SH coefficients used for rendering. The final value is capped by the SHBands property.</param>
+        /// <param name="scaleMultiplier">Scale multiplier for splats.</param>
+        /// <param name="opacity">Opacity multiplier for splats.</param>
         public void Render(uint splatCount, Transform transform, Bounds localBounds, int layer,
-            bool gammaToLinear = false, int shDegree = 3)
+            bool gammaToLinear = false, int shDegree = 3, float scaleMultiplier = 1.0f, float opacity = 1.0f)
         {
             if (!Valid || !GsplatSettings.Instance.Valid || !GsplatSorter.Instance.Valid)
                 return;
@@ -125,16 +129,26 @@ namespace Gsplat
             m_propertyBlock.SetInteger(k_gammaToLinear, gammaToLinear ? 1 : 0);
             m_propertyBlock.SetInteger(k_splatInstanceSize, (int)GsplatSettings.Instance.SplatInstanceSize);
             m_propertyBlock.SetInteger(k_shDegree, shDegree);
+            m_propertyBlock.SetFloat(k_scaleMultiplier, scaleMultiplier);
+            m_propertyBlock.SetFloat(k_opacity, opacity);
             m_propertyBlock.SetMatrix(k_matrixM, transform.localToWorldMatrix);
             var rp = new RenderParams(GsplatSettings.Instance.Materials[SHBands])
             {
-                worldBounds = GsplatUtils.CalcWorldBounds(localBounds, transform),
+                worldBounds = GsplatUtils.CalcWorldBounds(ScaleBounds(localBounds, scaleMultiplier), transform),
                 matProps = m_propertyBlock,
                 layer = layer
             };
 
             Graphics.RenderMeshPrimitives(rp, GsplatSettings.Instance.Mesh, 0,
                 Mathf.CeilToInt(splatCount / (float)GsplatSettings.Instance.SplatInstanceSize));
+        }
+
+        static Bounds ScaleBounds(Bounds bounds, float scaleMultiplier)
+        {
+            if (Mathf.Approximately(scaleMultiplier, 1.0f))
+                return bounds;
+            var scaledSize = bounds.size * Mathf.Max(scaleMultiplier, 0.0f);
+            return new Bounds(bounds.center, scaledSize);
         }
     }
 }
